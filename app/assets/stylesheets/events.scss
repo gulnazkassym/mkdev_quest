@@ -1,0 +1,28 @@
+.event-divider {
+  border-bottom: 1px solid #ddd;
+}
+
+.new-event {
+  margin-top: 30px;
+}
+
+.simple_form {
+  .form-group {
+    width: 700px;
+    
+    textarea {
+      height: 200px;
+    }
+  }
+}
+
+.event_endtime, .event_starttime {
+  div {
+    display: flex;
+  }
+  select {
+    width: auto;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+}

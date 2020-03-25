@@ -1,0 +1,19 @@
+.new-event
+  = link_to 'New event', new_event_path
+
+h1 Events
+br
+- @events.each do |event|
+  .event-divider
+    h4= link_to event.title, event_path(event)
+    p
+      = link_to 'Edit', edit_event_path(event)
+      = ' | '
+      = link_to 'Delete', event_path(event), method: :delete, data: { confirm: 'Are you sure?' }
+    p
+      span.text-muted
+        = "#{event.starttime.strftime('%a, %d %b %Y %H:%M')} | "
+        = event.location
+    p= event.description
+
+= paginate(@events)

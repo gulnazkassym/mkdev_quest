@@ -1,0 +1,11 @@
+= simple_form_for @event do |f|
+  = f.input :title, label: 'Title', input_html: {style: 'width: 700px'}
+  = f.input :description, label: 'Description'
+  = f.input :location, label: 'Location'
+  = f.input :starttime, label: 'Start time'
+  = f.input :endtime, label: 'End time'
+  = f.input :organizeremail, label: 'Organizer email'
+  = f.input :organizertelegram, label: 'Organizer telegram'
+  = f.input :link, label: 'Link'
+
+  = f.button :submit, class: 'btn btn-primary'

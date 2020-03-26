@@ -1,0 +1,19 @@
+.new-event
+  = link_to t('event.links.new'), new_event_path
+
+h1= t('event.headers.index')
+br
+- @events.each do |event|
+  .event-divider
+    h4= link_to event.title, event_path(event)
+    p
+      = link_to t('event.links.edit'), edit_event_path(event)
+      = ' | '
+      = link_to t('event.links.delete'), event_path(event), method: :delete, data: { confirm: t('event.are_you_sure') }
+    p
+      span.text-muted
+        = "#{date_formatter(event.start_time)} | "
+        = event.location
+    p= event.description
+
+= paginate(@events)

@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
+  EVENTS_PAGINATION = 5
+
   def index
-    @events = Event.page(params[:page]).per(5)
+    @events = Event.page(params[:page]).per(EVENTS_PAGINATION)
   end
 
   def show
@@ -15,7 +17,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      redirect_to @event
+      redirect_to @event, flash: { success: 'Event successfully created' }
     else
       render 'new'
     end
@@ -27,9 +29,9 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
- 
+
     if @event.update(event_params)
-      redirect_to @event
+      redirect_to @event, flash: { success: 'Event successfully updated' }
     else
       render 'edit'
     end
@@ -45,6 +47,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :location, :starttime, :endtime, :organizeremail, :organizertelegram, :link)
+    params.require(:event).permit(:title, :description, :location, :start_time, :end_time, :organizer_email, :organizer_telegram, :link)
   end
 end

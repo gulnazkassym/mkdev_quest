@@ -1,15 +1,15 @@
 .new-event
-  = link_to 'Back', root_path
+  = link_to t('event.links.back'), root_path
 
 h2= @event.title
 
 p
-  = link_to 'Edit', edit_event_path(@event)
+  = link_to t('event.links.edit'), edit_event_path(@event)
   = ' | '
-  = link_to 'Delete', event_path(@event), method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to t('event.links.delete'), event_path(@event), method: :delete, data: { confirm: 'Are you sure?' }
 
 p.text-muted
-  = "#{@event.starttime.strftime('%a, %d %b %Y %H:%M')} - #{@event.endtime.strftime('%a, %d %b %Y %H:%M')}"
+  = "#{date_formatter(@event.start_time)} - #{date_formatter(@event.end_time)}"
 
 p.text-muted
   = @event.location
@@ -17,10 +17,10 @@ p.text-muted
 p= @event.description
 
 p
-  | Organizer email: 
-  = @event.organizeremail
+  = t('event.labels.organizer_email') + ': '
+  = @event.organizer_email
 p
-  | Organizer telegram: 
-  = @event.organizertelegram
+  = t('event.labels.organizer_telegram') + ': '
+  = @event.organizer_telegram
 
-= link_to 'Read more', @event.link
+= link_to t('event.links.read_more'), @event.link

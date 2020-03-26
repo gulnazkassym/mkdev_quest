@@ -36,6 +36,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
 
 gem 'kaminari'

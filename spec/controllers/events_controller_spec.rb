@@ -7,7 +7,7 @@ RSpec.describe EventsController, type: :controller do
     it 'returns array of events' do
       get :index
 
-      assigns(:events).should eq([event])
+      expect(assigns(:events)).to eq([event])
     end
 
     it 'renders the :index view' do
@@ -20,7 +20,7 @@ RSpec.describe EventsController, type: :controller do
     let(:event) { create(:event) }
     it 'assigns the requested event to @event' do
       get :show, params: { id: event.id }
-      assigns(:event).should eq(event)
+      expect(assigns(:event)).to eq(event)
     end
 
     it 'renders the #show view' do
@@ -47,7 +47,7 @@ RSpec.describe EventsController, type: :controller do
 
     it 'located the requested :event' do
       put :update, params: {  id: event, event: attributes_for(:event) }
-      assigns(:event).should eq(event)
+      expect(assigns(:event)).to eq(event)
     end
 
     it "changes event's attributes" do
@@ -61,7 +61,7 @@ RSpec.describe EventsController, type: :controller do
 
     it 'redirects to the updated event' do
       put :update, params: { id: event, event: attributes_for(:event) }
-      expect(response).should redirect_to event
+      expect(response).to redirect_to event
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe EventsController, type: :controller do
 
     it 'redirects to events#index' do
       delete :destroy, params: { id: event }
-      expect(response).should redirect_to events_url
+      expect(response).to redirect_to events_url
     end
   end
 end

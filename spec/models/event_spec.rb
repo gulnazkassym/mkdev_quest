@@ -1,23 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  it 'should require title' do
-    event = Event.new(title: nil, description: 'Some event.', location: 'Smart Point')
-    expect(event).to_not be_valid
+  describe 'validates presence' do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:location) }
   end
 
-  it 'should require description' do
-    event = Event.new(title: 'Ruby MeetUp', description: nil, location: 'Smart Point')
-    expect(event).to_not be_valid
-  end
-
-  it 'should require location' do
-    event = Event.new(title: 'Ruby MeetUp', description: 'Some event.', location: nil)
-    expect(event).to_not be_valid
-  end
-
-  it 'should create event' do
-    event = Event.new(title: 'Ruby MeetUp', description: 'Some event.', location: 'Smart Point')
-    expect(event).to be_valid
+  describe 'validates length' do
+    it { should validate_length_of(:title).is_at_least(6) }
+    it { should validate_length_of(:description).is_at_most(350) }
   end
 end

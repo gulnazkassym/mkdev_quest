@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe EventsController, type: :controller do
 
   describe 'GET #index' do
+    let(:event) { create(:event) }
     it 'returns array of events' do
-      event = create(:event)
       get :index
 
       assigns(:events).should eq([event])
@@ -32,12 +32,12 @@ RSpec.describe EventsController, type: :controller do
   describe 'POST create' do
     it 'creates a new events' do
       expect {
-        post :create, params: { event: FactoryGirl.attributes_for(:event) }
+        post :create, params: { event: attributes_for(:event) }
       }.to change(Event, :count).by(1)
     end
 
     it 'redirects to the new event' do
-      post :create, params: { event: FactoryGirl.attributes_for(:event) }
+      post :create, params: { event: attributes_for(:event) }
       expect(response).to redirect_to Event.last
     end
   end
@@ -46,22 +46,22 @@ RSpec.describe EventsController, type: :controller do
     let(:event) { create :event }
 
     it 'located the requested :event' do
-      put :update, params: {  id: event, event: FactoryGirl.attributes_for(:event) }
+      put :update, params: {  id: event, event: attributes_for(:event) }
       assigns(:event).should eq(event)
     end
 
     it "changes event's attributes" do
       put :update, params: {
-        id: event, event: FactoryGirl.attributes_for(:event, title: 'HolyJS', description: 'Some event.') 
+        id: event, event: attributes_for(:event, title: 'HolyJS', description: 'Some event.') 
       }
       event.reload
-      event.title.should eq('HolyJS')
-      event.description.should eq('Some event.')
+      expect(event.title).to eq('HolyJS')
+      expect(event.description).to eq('Some event.')
     end
 
     it 'redirects to the updated event' do
-      put :update, params: { id: event, event: FactoryGirl.attributes_for(:event) }
-      response.should redirect_to event
+      put :update, params: { id: event, event: attributes_for(:event) }
+      expect(response).should redirect_to event
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe EventsController, type: :controller do
 
     it 'redirects to events#index' do
       delete :destroy, params: { id: event }
-      response.should redirect_to events_url
+      expect(response).should redirect_to events_url
     end
   end
 end

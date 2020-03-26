@@ -9,7 +9,7 @@ br
     p
       = link_to t('event.links.edit'), edit_event_path(event)
       = ' | '
-      = link_to t('event.links.delete'), event_path(event), method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to t('event.links.delete'), event_path(event), method: :delete, data: { confirm: t('event.are_you_sure') }
     p
       span.text-muted
         = "#{date_formatter(event.start_time)} | "

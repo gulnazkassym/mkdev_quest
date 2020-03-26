@@ -1,15 +1,10 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the EventsHelper. For example:
-#
-# describe EventsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe EventsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#date_formatter' do
+    let(:event) { create :event, start_time: '2020-07-25 11:00:00 UTC' }
+    it 'returns formatted date' do
+      expect(helper.date_formatter(event.start_time)).to eq('Sat, 25 Jul 2020 11:00')
+    end
+  end
 end

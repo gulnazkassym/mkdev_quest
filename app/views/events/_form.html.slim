@@ -1,11 +1,11 @@
 = simple_form_for @event do |f|
-  = f.input :title, label: simple_form_i18n('labels', 'title'), input_html: {style: 'width: 700px'}
-  = f.input :description, label: simple_form_i18n('labels', 'description')
-  = f.input :location, label: simple_form_i18n('labels', 'location')
-  = f.input :start_time, label: simple_form_i18n('labels', 'start_time')
-  = f.input :end_time, label: simple_form_i18n('labels', 'end_time')
-  = f.input :organizer_email, label: simple_form_i18n('labels', 'organizer_email')
-  = f.input :organizer_telegram, label: simple_form_i18n('labels', 'organizer_telegram')
-  = f.input :link, label: simple_form_i18n('labels', 'link')
+  = f.input :title, input_html: {style: 'width: 700px'}
+  = f.input :description
+  = f.input :location
+  = f.input :start_time
+  = f.input :end_time
+  = f.input :organizer_email
+  = f.input :organizer_telegram
+  = f.input :link
 
   = f.button :submit, class: 'btn btn-primary'

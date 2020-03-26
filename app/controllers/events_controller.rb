@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
-  EVENTS_PAGINATION = 5
+  EVENTS_PER_PAGE = 5
 
   def index
-    @events = Event.page(params[:page]).per(EVENTS_PAGINATION)
+    @events = Event.page(params[:page]).per(EVENTS_PER_PAGE)
   end
 
   def show
@@ -17,8 +17,9 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      redirect_to @event, flash: { success: 'Event successfully created' }
+      redirect_to @event, flash: { success: t('event.successful_create') }
     else
+      flash.now[:danger] = t('event.error_create')
       render 'new'
     end
   end
@@ -31,8 +32,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     if @event.update(event_params)
-      redirect_to @event, flash: { success: 'Event successfully updated' }
+      redirect_to @event, flash: { success: t('event.successful_update') }
     else
+      flash.now[:danger] = t('event.error_update')
       render 'edit'
     end
   end

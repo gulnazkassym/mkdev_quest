@@ -13,8 +13,6 @@ before_install:
 install:
   - bundle install --without production --path=${BUNDLE_PATH:-vendor/bundle}
 
-before_script: bundle exec rake db:create db:migrate
-
 script:
   - bundle exec rubocop -DESP
   - bundle exec rspec

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
-
   describe 'GET #index' do
     let(:event) { create(:event) }
     it 'returns array of events' do
@@ -52,7 +51,7 @@ RSpec.describe EventsController, type: :controller do
 
     it "changes event's attributes" do
       put :update, params: {
-        id: event, event: attributes_for(:event, title: 'HolyJS', description: 'Some event.') 
+        id: event, event: attributes_for(:event, title: 'HolyJS', description: 'Some event.')
       }
       event.reload
       expect(event.title).to eq('HolyJS')
@@ -69,9 +68,7 @@ RSpec.describe EventsController, type: :controller do
     let(:event) { create :event }
 
     it 'deletes the event' do
-      expect {
-        delete :destroy, params: { id: event }
-      }.to change(Event, :count).by(0)
+      expect { delete :destroy, params: { id: event } }.to change(Event, :count).by(0)
     end
 
     it 'redirects to events#index' do

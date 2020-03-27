@@ -30,9 +30,7 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'POST create' do
     it 'creates a new events' do
-      expect {
-        post :create, params: { event: attributes_for(:event) }
-      }.to change(Event, :count).by(1)
+      expect { post :create, params: { event: attributes_for(:event) } }.to change(Event, :count).by(1)
     end
 
     it 'redirects to the new event' do

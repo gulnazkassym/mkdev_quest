@@ -7,11 +7,21 @@ language: ruby
 rvm:
   - 2.6.3
 
+services:
+  - postgresql
+
+test:
+  adapter: postgresql
+  database: travis_ci_test  
+
 before_install:
   - gem install bundler
 
 install:
   - bundle install --without production --path=${BUNDLE_PATH:-vendor/bundle}
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 script:
   - bundle exec rubocop -DESP

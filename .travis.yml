@@ -21,7 +21,6 @@ before_script:
   - cp config/database.yml.travis config/database.yml
 
 script:
-  - bundle exec rubocop -DESP
   - bundle exec rspec
 
 after_script:

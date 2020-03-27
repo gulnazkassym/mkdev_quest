@@ -42,6 +42,7 @@ group :test do
 end
 
 gem 'kaminari'
+gem 'rubocop'
 gem 'simple_form'
 gem 'travis'
 gem 'twitter-bootstrap-rails'

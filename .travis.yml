@@ -10,10 +10,6 @@ rvm:
 services:
   - postgresql
 
-test:
-  adapter: postgresql
-  database: travis_ci_test  
-
 before_install:
   - gem install bundler
 
@@ -22,6 +18,7 @@ install:
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
 
 script:
   - bundle exec rubocop -DESP

@@ -1,32 +1,35 @@
+$red: #ff0000;
+$divider-color: #ddd;
+
 .event-divider {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $divider-color;
 }
 
 .new-event {
   margin-top: 30px;
 }
 
-.simple_form {
-  .form-group {
-    width: 700px;
-    
-    textarea {
-      height: 200px;
-    }
+.form-group {
+  width: 700px;
 
-    .invalid-feedback {
-      color: red;
-    }
+  textarea {
+    height: 200px;
+  }
+
+  .invalid-feedback {
+    color: $red;
   }
 }
 
-.event_end_time, .event_start_time {
+.event_end_time,
+.event_start_time {
   div {
     display: flex;
   }
+
   select {
-    width: auto;
-    margin-right: 5px;
     margin-left: 5px;
+    margin-right: 5px;
+    width: auto;
   }
 }

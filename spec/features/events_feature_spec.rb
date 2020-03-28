@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Event' do
@@ -7,17 +9,17 @@ feature 'Event' do
     scenario 'with valid values' do
       visit new_event_path
       fill_in 'Title', with: 'Ruby MeetUp 2020'
-      fill_in 'Description', with: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      fill_in 'Description', with: 'Lorem Ipsum is simply dummy text.'
       fill_in 'Location', with: '221b, Baker Street'
       click_on 'Create Event'
       expect(page).to have_content('Ruby MeetUp 2020')
-      expect(page).to have_content('Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
+      expect(page).to have_content('Lorem Ipsum is simply dummy text.')
     end
 
     scenario 'with invalid values' do
       visit new_event_path
       fill_in 'Title', with: 'Ruby'
-      fill_in 'Description', with: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      fill_in 'Description', with: 'Lorem Ipsum is simply dummy text.'
       click_on 'Create Event'
       expect(page).to have_content('Title is too short')
       expect(page).to have_content('Location can\'t be blank')

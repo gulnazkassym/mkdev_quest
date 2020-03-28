@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
@@ -30,7 +32,8 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'POST create' do
     it 'creates a new events' do
-      expect { post :create, params: { event: attributes_for(:event) } }.to change(Event, :count).by(1)
+      expect { post :create, params: { event: attributes_for(:event) } }
+        .to change(Event, :count).by(1)
     end
 
     it 'redirects to the new event' do
@@ -49,7 +52,9 @@ RSpec.describe EventsController, type: :controller do
 
     it "changes event's attributes" do
       put :update, params: {
-        id: event, event: attributes_for(:event, title: 'HolyJS', description: 'Some event.')
+        id: event, event: attributes_for(:event,
+                                         title: 'HolyJS',
+                                         description: 'Some event.')
       }
       event.reload
       expect(event.title).to eq('HolyJS')
@@ -66,7 +71,9 @@ RSpec.describe EventsController, type: :controller do
     let(:event) { create :event }
 
     it 'deletes the event' do
-      expect { delete :destroy, params: { id: event } }.to change(Event, :count).by(0)
+      expect { delete :destroy, params: { id: event } }.to change(
+        Event, :count
+      ).by(0)
     end
 
     it 'redirects to events#index' do

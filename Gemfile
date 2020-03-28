@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -19,9 +21,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'pry'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'faker'
   gem 'rspec-rails'
+  gem 'rubocop'
+  gem 'travis'
 end
 
 group :development do
@@ -37,13 +41,11 @@ group :test do
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
-  gem 'simplecov'
   gem 'shoulda-matchers'
+  gem 'simplecov'
 end
 
 gem 'kaminari'
-gem 'rubocop'
 gem 'simple_form'
-gem 'travis'
 gem 'twitter-bootstrap-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

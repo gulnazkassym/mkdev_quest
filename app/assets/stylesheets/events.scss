@@ -1,5 +1,8 @@
+$red: #ff0000;
+$divider_color: #ddd;
+
 .event-divider {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $divider_color;
 }
 
 .new-event {
@@ -14,7 +17,7 @@
   }
 
   .invalid-feedback {
-    color: #ff0000;
+    color: $red;
   }
 }
 

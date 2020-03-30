@@ -13,4 +13,5 @@ h2= t('devise.mailer.passwords.change_password')
     = f.input :password_confirmation, label: t('devise.mailer.passwords.confirm_password'), required: true
   .form-actions
     = f.button :submit, t('devise.mailer.passwords.change_password')
+
 = render "devise/shared/links"

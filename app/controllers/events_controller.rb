@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   EVENTS_PER_PAGE = 5
 
@@ -14,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(event_params.merge(user: current_user))
 
     if @event.save
       redirect_to @event, flash: { success: t('event.successful_create') }

@@ -13,7 +13,7 @@ en:
     labels:
       organizer_email: 'Organizer email'
       organizer_telegram: 'Organizer telegram'
-    are_you_sure: 'Are you sure?'
+    confirm: 'Are you sure?'
     successful_update: 'Event successfully updated.'
     successful_create: 'Event successfully created.'
     error_update: 'Error updating the event.'

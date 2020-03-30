@@ -1,0 +1,30 @@
+env:
+  global:
+  - CC_TEST_REPORTER_ID=ABC123
+
+language: ruby
+
+rvm:
+  - 2.6.3
+
+services:
+  - postgresql
+
+before_install:
+  - gem install bundler
+
+install:
+  - bundle install --without production --path=${BUNDLE_PATH:-vendor/bundle}
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+
+script:
+  - bundle exec rspec
+
+after_script:
+  - ./cc-test-reporter format-coverage -t simplecov -o coverage/codeclimate.backend.json coverage/backend/.resultset.json
+  - ./cc-test-reporter format-coverage -t lcov -o coverage/codeclimate.frontend.json coverage/frontend/lcov.info
+  - ./cc-test-reporter sum-coverage coverage/codeclimate.*.json -p 2
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi

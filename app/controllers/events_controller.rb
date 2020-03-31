@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params.merge(user: current_user))
+    @event = current_user.events.new(event_params)
 
     if @event.save
       redirect_to @event, flash: { success: t('event.successful_create') }

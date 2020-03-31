@@ -3,9 +3,27 @@
 require 'rails_helper'
 
 feature 'Event' do
-  let!(:event) { create :event, title: 'Ruby MeetUp 2020' }
+  let!(:user)  { create :user }
+  let!(:event) { create :event, title: 'Ruby MeetUp 2020', user: user }
+
+  describe 'event list' do
+    scenario 'authorized user' do
+      login_as(user, scope: :user)
+      visit events_path
+      expect(page).to have_link('Edit')
+      expect(page).to have_link('Delete')
+    end
+
+    scenario 'unauthorized user' do
+      visit events_path
+      expect(page).to_not have_link('Edit')
+      expect(page).to_not have_link('Delete')
+    end
+  end
 
   describe 'create new event' do
+    before { login_as(user, scope: :user) }
+
     scenario 'with valid values' do
       visit new_event_path
       fill_in 'Title', with: 'Ruby MeetUp 2020'
@@ -26,13 +44,27 @@ feature 'Event' do
     end
   end
 
-  scenario 'shows the event' do
-    visit events_path
-    click_on event.title
-    expect(page).to have_content(event.description)
+  describe 'shows the event' do
+    scenario 'authorized user' do
+      login_as(user, scope: :user)
+      visit events_path
+      click_on event.title
+      expect(page).to have_content(event.description)
+      expect(page).to have_link('Edit')
+      expect(page).to have_link('Delete')
+    end
+
+    scenario 'unauthorized user' do
+      visit events_path
+      click_on event.title
+      expect(page).to_not have_link('Edit')
+      expect(page).to_not have_link('Delete')
+    end
   end
 
   describe 'updates the event' do
+    before { login_as(user, scope: :user) }
+
     scenario 'with valid values' do
       visit edit_event_path(event)
       fill_in 'Title', with: 'Holy JS 2020'
@@ -50,6 +82,7 @@ feature 'Event' do
   end
 
   scenario 'destroys the event' do
+    login_as(user, scope: :user)
     visit events_path
     click_on 'Delete'
     expect(page).not_to have_content('Ruby MeetUp 2020')

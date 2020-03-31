@@ -1,12 +1,13 @@
-.new-event
+.page-header
   = link_to t('event.links.back'), root_path
 
 h2= @event.title
 
-p
-  = link_to t('event.links.edit'), edit_event_path(@event)
-  = ' | '
-  = link_to t('event.links.delete'), event_path(@event), method: :delete, data: { confirm: t('event.are_you_sure') }
+- if user_signed_in? && current_user.events.include?(@event)
+  p
+    = link_to t('event.links.edit'), edit_event_path(@event)
+    = ' | '
+    = link_to t('event.links.delete'), event_path(@event), method: :delete, data: { confirm: t('event.confirm') }
 
 p.text-muted
   = "#{date_formatter(@event.start_time)} - #{date_formatter(@event.end_time)}"

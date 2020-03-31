@@ -1,0 +1,8 @@
+p
+  | #{t('devise.mailer.header.welcome')} #{@email}!
+- if @resource.try(:unconfirmed_email?)
+  p
+    | #{t('devise.mailer.email_changed.confirmation')} #{@resource.unconfirmed_email}.
+- else
+  p
+    | #{t('devise.mailer.email_changed.notification')} #{@resource.email}.

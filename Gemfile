@@ -45,6 +45,7 @@ group :test do
   gem 'simplecov'
 end
 
+gem 'devise'
 gem 'kaminari'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'

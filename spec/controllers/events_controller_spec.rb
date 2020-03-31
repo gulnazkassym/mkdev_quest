@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
-<<<<<<< HEAD
   let(:user)  { create :user }
   let(:event) { create :event, user: user }
 
@@ -11,8 +10,6 @@ RSpec.describe EventsController, type: :controller do
     sign_in(user)
   end
 
-=======
->>>>>>> 28e0a2d831145154c7dde662c921ef5912302d05
   describe 'GET #index' do
     it 'returns array of events' do
       get :index

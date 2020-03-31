@@ -1,8 +1,8 @@
 p
-  | Hello #{@email}!
+  | #{t('devise.mailer.header.welcome')} #{@email}!
 - if @resource.try(:unconfirmed_email?)
   p
-    | We're contacting you to notify you that your email is being changed to #{@resource.unconfirmed_email}.
+    | #{t('devise.mailer.email_changed.confirmation')} #{@resource.unconfirmed_email}.
 - else
   p
-    | We're contacting you to notify you that your email has been changed to #{@resource.email}.
+    | #{t('devise.mailer.email_changed.notification')} #{@resource.email}.

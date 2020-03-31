@@ -1,4 +1,4 @@
-h2 Change your password
+h2= t('devise.mailer.passwords.change_password')
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
   = f.input :reset_password_token, as: :hidden
@@ -10,7 +10,7 @@ h2 Change your password
       autofocus: true,                                                                      \
       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), \
       input_html: { autocomplete: "new-password" }                                          \
-    = f.input :password_confirmation, label: "Confirm your new password", required: true
+    = f.input :password_confirmation, label: t('devise.mailer.passwords.confirm_password'), required: true
   .form-actions
-    = f.button :submit, "Change my password"
+    = f.button :submit, t('devise.mailer.passwords.change_password')
 = render "devise/shared/links"

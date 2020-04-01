@@ -3,6 +3,8 @@
     = link_to t('event.links.new'), new_event_path
     br
     = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
+  - elsif admin_signed_in?
+    = link_to t('devise.sessions.sign_out'), destroy_admin_session_path, method: :delete
   - else
     = link_to t('devise.registrations.sign_up'), new_user_registration_path
     br
@@ -13,7 +15,7 @@ br
 - @events.each do |event|
   .event-divider
     h4= link_to event.title, event_path(event)
-    - if user_signed_in? && current_user.events.include?(event)
+    - if admin_signed_in? || (user_signed_in? && current_user.events.include?(event))
       p
         = link_to t('event.links.edit'), edit_event_path(event)
         = ' | '

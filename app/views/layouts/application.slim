@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content=('text/html; charset=UTF-8') http-equiv='Content-Type'
     title Quest
     = csrf_meta_tags
     = csp_meta_tag
@@ -11,6 +11,8 @@ html
   body
     .container
       .row
+        = render 'layouts/header'
         - flash.each do |key, value|
           div class=("alert alert-#{key}") = value
         = yield
+    .page-footer

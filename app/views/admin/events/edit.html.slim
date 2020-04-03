@@ -1,0 +1,22 @@
+= link_to t('event.links.back'), authenticated_root_path(status: 'new')
+
+h2= t('event.headers.edit')
+
+= simple_form_for @event do |f|
+  = f.input :title, input_html: {style: 'width: 700px'}
+  = f.input :description
+  = f.input :location
+  = f.input :start_time
+  = f.input :end_time
+  = f.input :organizer_email
+  = f.input :organizer_telegram
+  = f.input :link
+
+  .col-md-5
+    = f.button :submit, 'Save', class: 'btn btn-primary'
+  - unless @event.status == 'published'
+    .col-md-1
+      = f.button :submit, 'Publish', class: 'btn btn-success', value: 'published', name: 'commit'
+  - unless @event.status == 'archiv'
+    .col-md-1
+      = f.button :submit, 'Archive', class: 'btn btn-danger', value: 'archive', name: 'commit'

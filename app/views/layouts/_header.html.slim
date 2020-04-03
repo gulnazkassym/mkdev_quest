@@ -1,0 +1,15 @@
+.page-header
+  - if user_signed_in?
+    = link_to t('event.links.new'), new_event_path
+    .pull-right
+      = link_to 'My events', user_list_events_path
+    br
+    = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
+  - elsif admin_signed_in?
+    = link_to t('devise.sessions.sign_out'), destroy_admin_session_path, method: :delete
+    .pull-right
+      = link_to 'Admin page', authenticated_root_path(status: 'new')
+  - else
+    = link_to t('devise.registrations.sign_up'), new_user_registration_path
+    br
+    = link_to t('devise.sessions.sign_in'), new_user_session_path

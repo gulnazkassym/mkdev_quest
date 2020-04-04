@@ -4,12 +4,15 @@ en:
       index: 'Events'
       new: 'New event'
       edit: 'Edit event'
+      user_list: 'My events'
     links:
       new: 'New event'
       edit: 'Edit'
       delete: 'Delete'
       back: 'Back'
       read_more: 'Read more'
+      admin_page: 'Admin page'
+      home_page: '< Back to home page'
     labels:
       organizer_email: 'Organizer email'
       organizer_telegram: 'Organizer telegram'
@@ -18,3 +21,8 @@ en:
     successful_create: 'Event sent to moderation.'
     error_update: 'Error updating the event.'
     error_create: 'Error creating the event.'
+    status:
+      publish: 'Publish'
+      archive: 'Archive'
+      sent: 'Sent to moderation'
+      published: 'Published'

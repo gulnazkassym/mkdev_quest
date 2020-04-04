@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   devise_scope :admin do
     authenticated :admin do
       get 'admin', to: 'admin/events#index', as: :authenticated_root
-      get 'admin/events/:id/edit', to: 'admin/events#edit', as: :admin_edit_event
+      get 'admin/events/:id/edit', to: 'admin/events#edit',
+                                   as: :admin_edit_event
     end
 
     unauthenticated do
@@ -24,5 +25,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events
+    root 'admin/events#index'
   end
 end

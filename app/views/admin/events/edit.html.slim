@@ -12,11 +12,13 @@ h2= t('event.headers.edit')
   = f.input :organizer_telegram
   = f.input :link
 
-  .col-md-5
-    = f.button :submit, 'Save', class: 'btn btn-primary'
-  - unless @event.status == 'published'
-    .col-md-1
-      = f.button :submit, 'Publish', class: 'btn btn-success', value: 'published', name: 'commit'
-  - unless @event.status == 'archiv'
-    .col-md-1
-      = f.button :submit, 'Archive', class: 'btn btn-danger', value: 'archive', name: 'commit'
+  .col-md-4
+    = f.button :submit, class: 'btn btn-primary'
+  .col-md-6.pull-right
+    - unless @event.status == 'published'
+      = f.button :button, t('event.status.publish'), class: 'btn btn-success', value: 'published', name: 'status', type: 'submit'
+    = ' '
+    - unless @event.status == 'archived'
+      = f.button :button, t('event.status.archive'), class: 'btn btn-danger', value: 'archived', name: 'status', type: 'submit'
+    - if @event.status == 'archived'
+      = link_to t('event.links.delete'), event_path(@event), method: :delete, class: 'btn btn-danger', data: { confirm: t('event.confirm') }

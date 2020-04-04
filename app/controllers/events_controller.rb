@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find params[:id]
   end
 
   def new
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.new(event_params.merge(status: 'new'))
+    @event = current_user.events.new event_params.merge(status: 'new')
 
     if @event.save
       redirect_to @event, flash: { success: t('event.successful_create') }
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
 
     if @event.update(event_params)
       if admin_signed_in?
-        @event.update(status: params[:commit].presence)
+        @event.update(status: params[:status].presence)
         redirect_to admin_edit_event_path(@event),
                     flash: { success: t('event.successful_update') }
       else
@@ -57,8 +57,9 @@ class EventsController < ApplicationController
 
   def user_list
     @user_events = current_user.events
+                               .by_status(params[:status])
                                .page(params[:page])
-                               .per(EVENTS_PER_PAGE) if current_user
+                               .per(EVENTS_PER_PAGE)
   end
 
   private

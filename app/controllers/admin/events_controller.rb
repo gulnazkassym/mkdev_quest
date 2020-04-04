@@ -9,5 +9,12 @@ class Admin
     def edit
       @event = Event.find(params[:id])
     end
+
+    def destroy
+      @event = Event.find(params[:id])
+      @event.destroy
+
+      redirect_to authenticated_root_path
+    end
   end
 end

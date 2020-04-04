@@ -3,7 +3,7 @@
 ul.nav.nav-tabs
   - current_status = params[:status]
   br
-  - [['new', 'New'], ['published', 'Published'], ['archive', 'Archived']].each do |status, name|
+  - [['new', 'New'], ['published', 'Published'], ['archived', 'Archived']].each do |status, name|
     li class=('active' if status == current_status)
       = link_to name, url_for(status: status)
 br

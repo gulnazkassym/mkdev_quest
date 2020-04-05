@@ -52,7 +52,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
 
-    redirect_to events_path
+    if admin_signed_in?
+      redirect_to authenticated_root_path anchor: 'archive'
+    else
+      redirect_to events_path
+    end
   end
 
   def user_list

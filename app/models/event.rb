@@ -8,4 +8,6 @@ class Event < ApplicationRecord
   validates :location, presence: true
   validates :organizer_email, allow_blank: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :user, presence: true
+
+  scope :by_status, ->(status) { where(status: status) }
 end

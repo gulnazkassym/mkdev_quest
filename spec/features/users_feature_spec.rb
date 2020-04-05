@@ -7,10 +7,12 @@ feature 'User' do
     scenario 'with valid values' do
       visit new_user_registration_path
 
-      fill_in 'Email', with: 'user@user.com'
-      fill_in 'Password', with: 'password', match: :prefer_exact
-      fill_in 'Password confirmation', with: 'password', match: :prefer_exact
-      click_on 'Sign up'
+      within('#new_user') do
+        fill_in 'Email', with: 'user@user.com'
+        fill_in 'Password', with: 'password', match: :prefer_exact
+        fill_in 'Password confirmation', with: 'password', match: :prefer_exact
+        click_on 'Sign up'
+      end
 
       expect(page).to have_content('Welcome! You have signed up successfully.')
     end
@@ -18,10 +20,12 @@ feature 'User' do
     scenario 'with not matching passwords' do
       visit new_user_registration_path
 
-      fill_in 'Email', with: 'user@user.com'
-      fill_in 'Password', with: 'password', match: :prefer_exact
-      fill_in 'Password confirmation', with: 'passwor', match: :prefer_exact
-      click_on 'Sign up'
+      within('#new_user') do
+        fill_in 'Email', with: 'user@user.com'
+        fill_in 'Password', with: 'password', match: :prefer_exact
+        fill_in 'Password confirmation', with: 'passwor', match: :prefer_exact
+        click_on 'Sign up'
+      end
 
       expect(page).to have_content(
         'Password confirmation doesn\'t match Password'
@@ -31,10 +35,12 @@ feature 'User' do
     scenario 'with short password' do
       visit new_user_registration_path
 
-      fill_in 'Email', with: 'user@user.com'
-      fill_in 'Password', with: 'pass', match: :prefer_exact
-      fill_in 'Password confirmation', with: 'pass', match: :prefer_exact
-      click_on 'Sign up'
+      within('#new_user') do
+        fill_in 'Email', with: 'user@user.com'
+        fill_in 'Password', with: 'pass', match: :prefer_exact
+        fill_in 'Password confirmation', with: 'pass', match: :prefer_exact
+        click_on 'Sign up'
+      end
 
       expect(page).to have_content('Password is too short')
     end
@@ -42,7 +48,9 @@ feature 'User' do
     scenario 'with missed values' do
       visit new_user_registration_path
 
-      click_on 'Sign up'
+      within('#new_user') do
+        click_on 'Sign up'
+      end
 
       expect(page).to have_content('Email can\'t be blank')
       expect(page).to have_content('Password can\'t be blank')
@@ -54,9 +62,11 @@ feature 'User' do
     scenario 'with valid values' do
       visit new_user_session_path
 
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_on 'Sign in'
+      within('#new_user') do
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: user.password
+        click_on 'Sign in'
+      end
 
       expect(page).to have_content('Signed in successfully.')
     end
@@ -64,9 +74,11 @@ feature 'User' do
     scenario 'with invalid values' do
       visit new_user_session_path
 
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: 'passsssssword'
-      click_on 'Sign in'
+      within('#new_user') do
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: 'passsssssword'
+        click_on 'Sign in'
+      end
 
       expect(page).to have_content('Invalid Email or password.')
     end

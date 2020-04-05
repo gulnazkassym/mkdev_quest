@@ -1,0 +1,11 @@
+= link_to  t('event.links.home_page'), root_path
+h1= t('event.headers.user_list')
+
+ul.nav.nav-tabs
+  - current_status = params[:status]
+  br
+  - [['new', t('event.status.sent')], ['published', t('event.status.published')]].each do |status, name|
+    li class=('active' if status == current_status)
+      = link_to name, url_for(status: status)
+br
+= render 'list', events: @user_events

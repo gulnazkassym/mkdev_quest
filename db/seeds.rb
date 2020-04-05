@@ -13,7 +13,8 @@ def create_events
       organizer_email: Faker::Internet.email,
       organizer_telegram: 'user',
       link: 'https://example.com',
-      user: User.all.first
+      user: User.all.first,
+      status: 'new'
     )
   end
 
@@ -27,7 +28,8 @@ def create_events
       organizer_email: Faker::Internet.email,
       organizer_telegram: 'user',
       link: 'https://example.com',
-      user: User.all.last
+      user: User.all.last,
+      status: 'published'
     )
   end
 end
@@ -41,5 +43,12 @@ def create_users
   end
 end
 
+def create_admin
+  puts 'Creating admin...'
+
+  Admin.create!(email: 'admin@admin.com', password: 'admin')
+end
+
+create_admin
 create_users
 create_events

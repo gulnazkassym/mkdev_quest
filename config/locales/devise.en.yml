@@ -25,6 +25,7 @@ en:
         subject: "Confirmation instructions"
         hint: "You can confirm your account email through the link below:"
         confirm_account: "Confirm my account"
+        account: "Account"
       reset_password_instructions:
         subject: "Reset password instructions"
         notification: "Someone has requested a link to change your password. You can do this through the link below."

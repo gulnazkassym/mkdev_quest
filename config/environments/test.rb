@@ -45,5 +45,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { host: 'www.events.com' }
+  config.action_mailer.default_url_options = { host: 'localhost' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true,
+    address: 'smtp.admin.kz',
+    port: 587,
+    domain: 'admin.kz',
+    authentication: :login,
+    user_name: ENV['EMAIL_ADDRESS'],
+    password: ENV['EMAIL_PASSWORD']
+  }
 end

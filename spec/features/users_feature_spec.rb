@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature 'User' do
   describe 'user registration' do
-    scenario 'with valid values' do
+    xscenario 'with valid values' do
       visit new_user_registration_path
 
       within('#new_user') do

@@ -7,10 +7,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events
-
-  private
-
-  def send_user_mail
-    NotificationsMailer.welcome_email(email, password).deliver_now
-  end
 end

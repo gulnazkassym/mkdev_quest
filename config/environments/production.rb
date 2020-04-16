@@ -101,7 +101,7 @@ Rails.application.configure do
     port: 587,
     domain: 'admin.kz',
     authentication: :login,
-    email: 'admin@admin.kz',
+    user_name: ENV['EMAIL_ADDRESS'],
     password: ENV['EMAIL_PASSWORD']
   }
 end

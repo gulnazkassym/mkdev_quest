@@ -1,4 +1,4 @@
-# Preview all emails at http://localhost:3000/rails/mailers/notifications
+# frozen_string_literal: true
+
 class NotificationsPreview < ActionMailer::Preview
-  
 end

@@ -7,5 +7,6 @@
   = f.input :organizer_email
   = f.input :organizer_telegram
   = f.input :link
+  = f.association :tags, as: :check_boxes
 
   = f.button :submit, class: 'btn btn-primary'

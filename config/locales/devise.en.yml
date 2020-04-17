@@ -25,6 +25,7 @@ en:
         subject: "Confirmation instructions"
         hint: "You can confirm your account email through the link below:"
         confirm_account: "Confirm my account"
+        account: "Account"
       reset_password_instructions:
         subject: "Reset password instructions"
         notification: "Someone has requested a link to change your password. You can do this through the link below."
@@ -81,6 +82,7 @@ en:
       forgot_password: 'Forgot your password?'
       confirmation_instructions_failure: "Didn't receive confirmation instructions?"
       unlock_instructions_failure: "Didn't receive unlock instructions?"
+      admin_sign_in: "Admin sign in"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

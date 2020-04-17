@@ -12,5 +12,6 @@ FactoryGirl.define do
     organizer_email Faker::Internet.email
     organizer_telegram 'user'
     link 'https://example.com'
+    status 'published'
   end
 end

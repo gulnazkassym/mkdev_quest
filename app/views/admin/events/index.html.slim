@@ -1,0 +1,12 @@
+ul.nav.nav-tabs
+  - current_status = params[:status]
+  br
+  - [['new', 'New'], ['published', 'Published'], ['archived', 'Archived']].each do |status, name|
+    li class=('active' if status == current_status)
+      = link_to name, url_for(status: status)
+br
+- if @events.any?
+  - @events.each do |event|
+    p= link_to event.title, edit_admin_event_path(event)
+    small.text-muted= date_formatter(event.created_at)
+    hr

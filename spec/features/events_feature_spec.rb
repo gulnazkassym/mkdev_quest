@@ -24,7 +24,7 @@ feature 'Event' do
   describe 'create new event' do
     before { login_as(user, scope: :user) }
 
-    scenario 'with valid values' do
+    xscenario 'with valid values' do
       visit new_event_path
       fill_in 'Title', with: 'Ruby MeetUp 2020'
       fill_in 'Description', with: 'Lorem Ipsum is simply dummy text.'

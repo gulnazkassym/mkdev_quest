@@ -7,7 +7,9 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.by_status('published')
-                   .page(params[:page]).per(EVENTS_PER_PAGE)
+
+    @events = @events.tagged_with(params[:tag]) if params[:tag]
+    @events = @events.page(params[:page]).per(EVENTS_PER_PAGE)
   end
 
   def show
@@ -75,7 +77,8 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(
       :title, :description, :location, :start_time, :end_time, :organizer_email,
-      :organizer_telegram, :link, :status
+      :organizer_telegram, :link, :status, :tag_list, :tag, { tag_ids: [] },
+      :tag_ids
     )
   end
 end

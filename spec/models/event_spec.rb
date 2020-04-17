@@ -16,5 +16,7 @@ RSpec.describe Event, type: :model do
 
   describe 'event associations' do
     it { should belong_to(:user) }
+    it { should have_many(:tags) }
+    it { should have_many(:taggings) }
   end
 end

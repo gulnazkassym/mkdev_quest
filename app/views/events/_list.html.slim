@@ -11,5 +11,8 @@
         = "#{date_formatter(event.start_time)} | "
         = event.location
     p= event.description
+    p
+      small
+        = raw event.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ')
 
 = paginate(events)

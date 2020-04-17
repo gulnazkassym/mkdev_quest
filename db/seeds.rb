@@ -14,7 +14,8 @@ def create_events
       organizer_telegram: 'user',
       link: 'https://example.com',
       user: User.all.first,
-      status: 'new'
+      status: 'new',
+      tag_ids: [1, 2, 3]
     )
   end
 

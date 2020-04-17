@@ -15,3 +15,13 @@
  */
 
 @import "events";
+$notice-background: #fcf8e3;
+$notice-border: #faebcc;
+$notice-color: #8a6d3b;
+
+.alert-notice,
+.alert-alert {
+  background-color: $notice-background;
+  border-color: $notice-border;
+  color: $notice-color;
+}

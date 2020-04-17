@@ -3,6 +3,8 @@
 class EventsController < ApplicationController
   EVENTS_PER_PAGE = 5
 
+  before_action :authenticate_user!, except: %i[show index]
+
   def index
     @events = Event.by_status('published')
 
@@ -23,6 +25,8 @@ class EventsController < ApplicationController
 
     if @event.save
       redirect_to @event, flash: { success: t('event.successful_create') }
+      NotificationsMailer.notify_about_new_event('admin@admin.kz', @event.id)
+                         .deliver_now
     else
       flash.now[:danger] = t('event.error_create')
       render 'new'

@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      | #{@event.user.email} created new event
+    p
+      = link_to edit_admin_event_url(@event), edit_admin_event_url(@event)

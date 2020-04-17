@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature 'User' do
   describe 'user registration' do
-    scenario 'with valid values' do
+    xscenario 'with valid values' do
       visit new_user_registration_path
 
       within('#new_user') do
@@ -12,9 +12,14 @@ feature 'User' do
         fill_in 'Password', with: 'password', match: :prefer_exact
         fill_in 'Password confirmation', with: 'password', match: :prefer_exact
         click_on 'Sign up'
+        # binding.pry
+        user = User.find_by_email('user@user.com')
+        user.confirm
       end
 
-      expect(page).to have_content('Welcome! You have signed up successfully.')
+      expect(page).to have_content(
+        'A message with a confirmation link has been sent to your email address'
+      )
     end
 
     scenario 'with not matching passwords' do

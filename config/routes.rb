@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
   root 'events#index'
   resources :events do
     collection do
       get :user_list
+    end
+  end
+
+  devise_for :users
+  resources :users do
+    member do
+      get :confirm_email
     end
   end
 
@@ -20,6 +26,7 @@ Rails.application.routes.draw do
 
     unauthenticated do
       get 'admin', to: 'admin/sessions#new', as: :unauthenticated_root
+      get 'admin/events/:id/edit', to: redirect('/admin')
     end
   end
 

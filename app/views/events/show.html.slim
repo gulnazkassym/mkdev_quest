@@ -24,3 +24,6 @@ p
   = @event.organizer_telegram
 
 = link_to t('event.links.read_more'), @event.link
+p
+  small
+    = raw @event.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ')

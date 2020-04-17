@@ -14,7 +14,8 @@ def create_events
       organizer_telegram: 'user',
       link: 'https://example.com',
       user: User.all.first,
-      status: 'new'
+      status: 'new',
+      tag_ids: [1, 2, 3]
     )
   end
 
@@ -46,9 +47,21 @@ end
 def create_admin
   puts 'Creating admin...'
 
-  Admin.create!(email: 'admin@admin.com', password: 'admin')
+  Admin.create!(email: 'admin@admin.com', password: 'adminadmin')
+end
+
+def create_tags
+  puts 'Creating tags...'
+
+  [
+    'music', 'science', 'books', 'language&culture', 'trip', 'food&drinks', 'fashion&beauty',
+    'education', 'health', 'sport', 'technologies', 'hobby&craft', 'movies'
+  ].each do |tag|
+    Tag.create name: tag
+  end
 end
 
 create_admin
 create_users
 create_events
+create_tags

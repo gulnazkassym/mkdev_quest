@@ -15,3 +15,10 @@
  */
 
 @import "events";
+
+.alert-notice,
+.alert-alert {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}

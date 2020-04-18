@@ -6,9 +6,9 @@
     br
     = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
   - elsif admin_signed_in?
-    = link_to t('devise.sessions.sign_out'), destroy_admin_session_path, method: :delete
+    = link_to t('event.links.admin_page'), authenticated_root_path(status: 'new')
     .pull-right
-      = link_to t('event.links.admin_page'), authenticated_root_path(status: 'new')
+      = link_to t('devise.sessions.sign_out'), destroy_admin_session_path, method: :delete
   - else
     = link_to t('devise.registrations.sign_up'), new_user_registration_path
     br

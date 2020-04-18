@@ -26,3 +26,12 @@ en:
       archive: 'Archive'
       sent: 'Sent to moderation'
       published: 'Published'
+  newsletter:
+    messages:
+      success: 'You have successfully subscribed to newsletters'
+      error: 'Email is already on subscription list'
+      unsubscribe: 'You have succesfully unsubscribed'
+    mailer:
+      header: 'Hi! Upcoming events are waiting for you'
+      more: 'More events'
+      unsubscribe: 'Unsubscribe'

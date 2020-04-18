@@ -36,4 +36,7 @@ Rails.application.routes.draw do
   end
 
   get 'tags/:tag', to: 'events#index', as: :tag
+  resources :subscribers do
+    get :unsubscribe, on: :member
+  end
 end

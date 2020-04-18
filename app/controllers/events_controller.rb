@@ -3,13 +3,14 @@
 class EventsController < ApplicationController
   EVENTS_PER_PAGE = 5
 
-  before_action :authenticate_user!, except: %i[show index]
+  before_action :authenticate_user!, except: %i[show index update]
 
   def index
-    @events = Event.by_status('published')
-
+    @events = Event.published
     @events = @events.tagged_with(params[:tag]) if params[:tag]
     @events = @events.page(params[:page]).per(EVENTS_PER_PAGE)
+
+    @subscriber = Subscriber.new
   end
 
   def show

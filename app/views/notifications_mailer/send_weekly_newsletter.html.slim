@@ -1,0 +1,16 @@
+h2= t('newsletter.mailer.header')
+p
+  - @upcoming_events.each do |event|
+    .event-divider
+      p
+        span.text-muted
+          = "#{date_formatter(event.start_time)} | "
+          = event.location
+      p
+        small
+          = raw event.tags.map(&:name).join(', ')
+    hr
+
+  = link_to t('newsletter.mailer.more'), events_url
+
+= link_to t('newsletter.mailer.unsubscribe'), unsubscribe_subscriber_url(@email)

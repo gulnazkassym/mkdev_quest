@@ -8,11 +8,14 @@ class Event < ApplicationRecord
   validates :title, presence: true, length: { minimum: 6 }
   validates :description, presence: true, length: { maximum: 350 }
   validates :location, presence: true
-  validates :organizer_email, allow_blank: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :organizer_email,
+            allow_blank: true,
+            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :user, presence: true
 
   default_scope { order(created_at: :desc) }
   scope :by_status, ->(status) { where(status: status) }
+  scope :published, -> { by_status('published') }
 
   def self.tagged_with(name)
     Tag.find_by!(name: name).events

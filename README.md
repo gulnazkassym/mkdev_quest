@@ -23,5 +23,3 @@ List of events in model `Event`
 * Code style `rubocop`
 
 * Continuous Integration(CI) - Travis CI
-
-* heroku `https://still-journey-54151.herokuapp.com/`

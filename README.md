@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Events Advertisement App
 
-Things you may want to cover:
+List of events in model `Event`
 
-* Ruby version
+* ruby <= 2.6 
 
-* System dependencies
+* `rake db:create`
 
-* Configuration
+* `rake db:schema:load`
 
-* Database creation
+* `gem install bundler && bundle install`
 
-* Database initialization
+* `rake db:seed` to fill database with fake data
 
-* How to run the test suite
+* `rails s`
 
-* Services (job queues, cache servers, search engines, etc.)
+* go to the `localhost:3000`
 
-* Deployment instructions
+* Tests `bundle exec rspec`
 
-* ...
+* Code style `rubocop`
+
+* Continuous Integration(CI) - Travis CI
+
+* heroku `https://still-journey-54151.herokuapp.com/`

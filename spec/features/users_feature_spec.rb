@@ -12,9 +12,6 @@ feature 'User' do
         fill_in 'Password', with: 'password', match: :prefer_exact
         fill_in 'Password confirmation', with: 'password', match: :prefer_exact
         click_on 'Sign up'
-        # binding.pry
-        user = User.find_by_email('user@user.com')
-        user.confirm
       end
 
       expect(page).to have_content(

@@ -7,4 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events
+
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
 end
